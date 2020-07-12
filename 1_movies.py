@@ -15,5 +15,8 @@ for col in df.columns:
     for char in CHARS_TO_REPLACE:
         col = col.replace(char,"")
 
-#Save the file as .csv file. 		
-df.to_csv("D:\\Delme\\Movie\\movies_clean.csv", encoding='utf-8', index=False)		
+#Convert the datatype of year to integer
+df['year'] = pd.to_numeric(df['year'])
+
+#Apply the filter for last decade and export the data set as .csv file. 		
+df[(df['year']>=2001) & (df['year']<=2010)].to_csv("D:\\Delme\\Movie\\movies_clean.csv", encoding='utf-8', index=False)		
